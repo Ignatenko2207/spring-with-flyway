@@ -11,7 +11,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @SpringBootTest
 class UserDAOTest {
@@ -19,10 +20,10 @@ class UserDAOTest {
     @Autowired
     UserDAO userDAO;
 
-    List <User> users = new ArrayList<>();
+    List<User> users = new ArrayList<>();
 
     @BeforeEach
-    void setUp(){
+    void setUp() {
         User userTest1 = new User("testlogin", "testpassword", "test1", "test1", Profile.CLIENT);
         User savedUser1 = userDAO.save(userTest1);
         User userTest2 = new User("testlogin", "testpassword2", "test1", "test2", Profile.CLIENT);
@@ -32,13 +33,13 @@ class UserDAOTest {
     }
 
     @AfterEach
-    void tearDown(){
+    void tearDown() {
         users.stream().forEach(user -> userDAO.delete(user));
     }
 
     @Test
     void findAllByLogin() {
-        List <User> testUsers = userDAO.findAllByLogin("testlogin");
+        List<User> testUsers = userDAO.findAllByLogin("testlogin");
         assertEquals(users.size(), testUsers.size());
     }
 

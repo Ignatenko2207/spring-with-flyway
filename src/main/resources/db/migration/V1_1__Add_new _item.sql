@@ -1,0 +1,1 @@
+INSERT INTO items(name, price) VALUES('Samsung S10', 20000)
